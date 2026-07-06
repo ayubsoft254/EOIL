@@ -32,8 +32,8 @@ class NewsletterIssueAdmin(admin.ModelAdmin):
                 continue
             messages = []
             for sub in subscribers:
-                footer = (f'\n\n—\nYou are receiving this because you subscribed to the '
-                          f'EOIL TTU newsletter.\nUnsubscribe: '
+                footer = (f'\n\n—\nYou are receiving this because you subscribed to the EOIL '
+                          f'newsletter at Taita Taveta University.\nUnsubscribe: '
                           f'{request.build_absolute_uri(f"/newsletter/unsubscribe/{sub.token}/")}')
                 messages.append(EmailMessage(
                     subject=issue.subject,
