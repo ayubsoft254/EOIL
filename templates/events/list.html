@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Events · EOIL TTU{% endblock %}
+
+{% block content %}
+<section class="earth-grid bg-gradient-to-br from-slate-950 via-brand-950 to-slate-900 py-16">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <p class="text-sm font-bold uppercase tracking-widest text-brand-300">Hackathons · Conferences · Workshops</p>
+    <h1 class="mt-3 text-4xl font-extrabold text-white sm:text-5xl">Events at the lab</h1>
+    <p class="mt-4 max-w-2xl text-slate-300">
+      Register for upcoming hackathons, conferences and trainings. Every registration comes with a
+      digital ticket for fast check-in at the venue.
+    </p>
+  </div>
+</section>
+
+<section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+  <h2 class="text-2xl font-extrabold text-slate-900">Upcoming</h2>
+  {% if upcoming %}
+    <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {% for event in upcoming %}
+        {% include 'partials/event_card.html' %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="mt-8 rounded-2xl border border-dashed border-slate-300 p-10 text-center text-slate-500">
+      Nothing scheduled at the moment — subscribe to the newsletter to hear about the next one first.
+    </p>
+  {% endif %}
+
+  {% if past %}
+    <h2 class="mt-16 text-2xl font-extrabold text-slate-900">Past events</h2>
+    <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {% for event in past %}
+        {% include 'partials/event_card.html' %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>
+{% endblock %}
