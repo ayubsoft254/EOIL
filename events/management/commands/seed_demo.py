@@ -52,9 +52,9 @@ class Command(BaseCommand):
                     'planning and service delivery in Kenya.\n\n'
                     'Expect keynotes from the Kenya Space Agency, technical sessions on land-use '
                     'mapping and climate services, and a demo floor of EO start-ups incubated at '
-                    'TTU and the University of Nairobi.'
+                    'Taita Taveta University and the University of Nairobi.'
                 ),
-                venue='TTU Main Auditorium, Voi',
+                venue='Taita Taveta University Main Auditorium, Voi',
                 start_at=now + timedelta(days=45),
                 end_at=now + timedelta(days=46),
                 registration_deadline=now + timedelta(days=40),
