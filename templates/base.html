@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}EOIL · Taita Taveta University{% endblock %}</title>
+  <meta name="description" content="Earth Observation Innovation Laboratory at Taita Taveta University — empowering innovators to solve local challenges through satellite data.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50:'#ecfdf5',100:'#d1fae5',200:'#a7f3d0',300:'#6ee7b7',400:'#34d399',
+              500:'#10b981',600:'#059669',700:'#047857',800:'#065f46',900:'#064e3b',950:'#022c22'
+            },
+            accent: {400:'#fbbf24',500:'#f59e0b',600:'#d97706'}
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .earth-grid {
+        background-image: radial-gradient(rgba(52, 211, 153, 0.18) 1px, transparent 1px);
+        background-size: 26px 26px;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased flex min-h-screen flex-col">
+
+<!-- Navigation -->
+<header class="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
+    <a href="{% url 'core:home' %}" class="flex items-center gap-3">
+      <span class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-700 text-white">
+        <!-- satellite icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="3.2"/>
+          <path stroke-linecap="round" d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.4 5.4l2.1 2.1M16.5 16.5l2.1 2.1M18.6 5.4l-2.1 2.1M7.5 16.5l-2.1 2.1"/>
+        </svg>
+      </span>
+      <span class="leading-tight">
+        <span class="block text-sm font-bold tracking-wide text-brand-800">EOIL · TTU</span>
+        <span class="block text-[11px] text-slate-500">Earth Observation Innovation Lab</span>
+      </span>
+    </a>
+    <nav class="hidden items-center gap-6 text-sm font-medium md:flex">
+      <a href="{% url 'core:home' %}#about" class="hover:text-brand-700">About</a>
+      <a href="{% url 'core:home' %}#objectives" class="hover:text-brand-700">Objectives</a>
+      <a href="{% url 'core:home' %}#themes" class="hover:text-brand-700">Focus Areas</a>
+      <a href="{% url 'events:list' %}" class="hover:text-brand-700">Events</a>
+      <a href="{% url 'core:home' %}#newsletter" class="hover:text-brand-700">Newsletter</a>
+      {% if user.is_staff %}
+        <a href="{% url 'events:checkin_home' %}" class="rounded-lg bg-brand-700 px-3 py-1.5 text-white hover:bg-brand-800">Check-in desk</a>
+      {% endif %}
+    </nav>
+    <a href="{% url 'events:list' %}" class="rounded-lg bg-accent-500 px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-accent-400 md:hidden">Events</a>
+  </div>
+</header>
+
+<!-- Flash messages -->
+{% if messages %}
+  <div class="mx-auto mt-4 w-full max-w-3xl space-y-2 px-4">
+    {% for message in messages %}
+      <div class="rounded-lg border px-4 py-3 text-sm shadow-sm
+        {% if message.tags == 'success' %}border-brand-200 bg-brand-50 text-brand-900
+        {% elif message.tags == 'error' %}border-red-200 bg-red-50 text-red-800
+        {% elif message.tags == 'warning' %}border-amber-200 bg-amber-50 text-amber-900
+        {% else %}border-sky-200 bg-sky-50 text-sky-900{% endif %}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<main class="flex-1">
+  {% block content %}{% endblock %}
+</main>
+
+<!-- Footer -->
+<footer id="contact" class="mt-16 bg-slate-900 text-slate-300">
+  <div class="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
+    <div>
+      <h3 class="text-lg font-bold text-white">EOIL @ Taita Taveta University</h3>
+      <p class="mt-3 text-sm leading-relaxed">
+        A physical and virtual innovation space democratising access to satellite data for
+        sustainable development. Commissioned by the European Union &amp; France, implemented by
+        Expertise France in partnership with the Kenya Space Agency.
+      </p>
+      <p class="mt-4 text-xs text-slate-400">Project period: November 2024 – December 2026</p>
+    </div>
+    <div>
+      <h4 class="text-sm font-semibold uppercase tracking-wider text-white">Contact</h4>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li>Taita Taveta University, Voi–Mwatate Road, Voi, Kenya</li>
+        <li><a href="mailto:eoil@ttu.ac.ke" class="hover:text-white">eoil@ttu.ac.ke</a></li>
+        <li><a href="https://www.ttu.ac.ke" class="hover:text-white">www.ttu.ac.ke</a></li>
+        <li><a href="https://ksa.go.ke/eoil" class="hover:text-white">Kenya Space Agency · EOIL</a></li>
+      </ul>
+      <h4 class="mt-6 text-sm font-semibold uppercase tracking-wider text-white">Quick links</h4>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li><a href="{% url 'events:list' %}" class="hover:text-white">Upcoming events</a></li>
+        {% if user.is_staff %}
+          <li><a href="{% url 'events:checkin_home' %}" class="hover:text-white">Check-in desk</a></li>
+          <li><a href="/admin/" class="hover:text-white">Site administration</a></li>
+        {% else %}
+          <li><a href="{% url 'login' %}" class="hover:text-white">Staff login</a></li>
+        {% endif %}
+      </ul>
+    </div>
+    <div id="newsletter">
+      <h4 class="text-sm font-semibold uppercase tracking-wider text-white">Newsletter</h4>
+      <p class="mt-3 text-sm">Monthly updates on training, hackathons, conferences and Earth-observation opportunities at TTU.</p>
+      <form method="post" action="{% url 'newsletter:subscribe' %}" class="mt-4 space-y-3">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <input type="text" name="name" placeholder="Your name (optional)"
+               class="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-brand-500 focus:outline-none">
+        <input type="email" name="email" required placeholder="you@example.com"
+               class="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:border-brand-500 focus:outline-none">
+        <button type="submit"
+                class="w-full rounded-lg bg-accent-500 px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-accent-400">
+          Subscribe
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="border-t border-slate-800 py-5 text-center text-xs text-slate-500">
+    © {% now "Y" %} Earth Observation Innovation Laboratory · Taita Taveta University.
+    In partnership with the Kenya Space Agency, the European Union, France &amp; Expertise France.
+  </div>
+</footer>
+
+</body>
+</html>
