@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Check-in desk · EOIL TTU{% endblock %}
+
+{% block content %}
+<section class="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+  <p class="text-sm font-bold uppercase tracking-widest text-brand-700">Staff · Check-in desk</p>
+  <h1 class="mt-2 text-3xl font-extrabold text-slate-900">Choose an event</h1>
+  <p class="mt-2 text-sm text-slate-500">Signed in as <strong>{{ user.get_username }}</strong> ·
+    <a href="/admin/" class="font-semibold text-brand-700">Admin</a> ·
+    <form method="post" action="{% url 'logout' %}" class="inline">{% csrf_token %}
+      <button type="submit" class="font-semibold text-brand-700 hover:underline">Log out</button>
+    </form>
+  </p>
+
+  <div class="mt-10 space-y-4">
+    {% for event in events %}
+      <a href="{% url 'events:checkin' event.slug %}"
+         class="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-brand-400 hover:shadow-md">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">{{ event.get_event_type_display }} · {{ event.start_at|date:"d M Y" }}</p>
+          <h2 class="mt-1 text-lg font-bold text-slate-900">{{ event.title }}</h2>
+        </div>
+        <div class="flex gap-6 text-center text-sm">
+          <div><p class="text-xl font-extrabold text-slate-900">{{ event.confirmed_count }}</p><p class="text-xs text-slate-500">confirmed</p></div>
+          <div><p class="text-xl font-extrabold text-brand-700">{{ event.checked_in_count }}</p><p class="text-xs text-slate-500">checked in</p></div>
+        </div>
+      </a>
+    {% empty %}
+      <p class="rounded-2xl border border-dashed border-slate-300 p-10 text-center text-slate-500">No events yet. Create one in the <a href="/admin/events/event/add/" class="font-semibold text-brand-700">admin</a>.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
