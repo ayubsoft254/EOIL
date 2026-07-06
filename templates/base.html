@@ -24,9 +24,21 @@
   </script>
   <style type="text/tailwindcss">
     @layer utilities {
+      /* Dot pattern on a pseudo-element so it layers on top of Tailwind's
+         bg-gradient-* classes instead of overriding their background-image. */
       .earth-grid {
+        position: relative;
+        isolation: isolate;
+      }
+      .earth-grid::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: inherit;
         background-image: radial-gradient(rgba(52, 211, 153, 0.18) 1px, transparent 1px);
         background-size: 26px 26px;
+        pointer-events: none;
       }
     }
   </style>
@@ -45,7 +57,7 @@
         </svg>
       </span>
       <span class="leading-tight">
-        <span class="block text-sm font-bold tracking-wide text-brand-800">EOIL · TTU</span>
+        <span class="block text-sm font-bold tracking-wide text-brand-800">EOIL · Taita Taveta University</span>
         <span class="block text-[11px] text-slate-500">Earth Observation Innovation Lab</span>
       </span>
     </a>
@@ -115,7 +127,7 @@
     </div>
     <div id="newsletter">
       <h4 class="text-sm font-semibold uppercase tracking-wider text-white">Newsletter</h4>
-      <p class="mt-3 text-sm">Monthly updates on training, hackathons, conferences and Earth-observation opportunities at TTU.</p>
+      <p class="mt-3 text-sm">Monthly updates on training, hackathons, conferences and Earth-observation opportunities at Taita Taveta University.</p>
       <form method="post" action="{% url 'newsletter:subscribe' %}" class="mt-4 space-y-3">
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ request.path }}">
