@@ -1,0 +1,40 @@
+<article class="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+  <a href="{{ event.get_absolute_url }}" class="block">
+    {% if event.banner %}
+      <img src="{{ event.banner.url }}" alt="" class="h-40 w-full object-cover">
+    {% else %}
+      <div class="earth-grid flex h-40 w-full items-end bg-gradient-to-br
+                  {% if event.event_type == 'hackathon' %}from-brand-800 to-brand-950
+                  {% elif event.event_type == 'conference' %}from-slate-800 to-brand-900
+                  {% else %}from-brand-700 to-slate-900{% endif %} p-4">
+        <span class="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur">
+          {{ event.get_event_type_display }}
+        </span>
+      </div>
+    {% endif %}
+  </a>
+  <div class="flex flex-1 flex-col p-5">
+    <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">
+      {{ event.start_at|date:"D, d M Y · H:i" }}
+    </p>
+    <h3 class="mt-2 text-lg font-bold text-slate-900">
+      <a href="{{ event.get_absolute_url }}" class="hover:text-brand-700">{{ event.title }}</a>
+    </h3>
+    <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{{ event.tagline }}</p>
+    <div class="mt-4 flex items-center justify-between text-sm">
+      <span class="text-slate-500">{{ event.venue|truncatechars:32 }}</span>
+      {% if event.registration_open %}
+        {% if event.is_full %}
+          <span class="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">Waitlist open</span>
+        {% else %}
+          <a href="{{ event.get_absolute_url }}#register"
+             class="rounded-lg bg-brand-700 px-3 py-1.5 text-xs font-semibold text-white hover:bg-brand-800">Register</a>
+        {% endif %}
+      {% elif event.is_past %}
+        <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500">Past event</span>
+      {% else %}
+        <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500">Registration closed</span>
+      {% endif %}
+    </div>
+  </div>
+</article>
