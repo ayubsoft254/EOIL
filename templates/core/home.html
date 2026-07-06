@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="earth-grid relative overflow-hidden bg-gradient-to-br from-slate-950 via-brand-950 to-slate-900">
+  <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:py-32">
+    <p class="inline-flex items-center gap-2 rounded-full border border-brand-500/40 bg-brand-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-brand-300">
+      <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-accent-400"></span>
+      Kenya Space Agency · EU &amp; France · Expertise France
+    </p>
+    <h1 class="mt-6 max-w-3xl text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
+      Earth Observation<br>
+      Innovation Laboratory
+      <span class="mt-2 block text-2xl font-bold text-brand-300 sm:text-3xl">at Taita Taveta University</span>
+    </h1>
+    <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
+      Empowering Taita Taveta innovators to solve local challenges through satellite data —
+      a physical and virtual innovation space democratising access to Earth-observation
+      information for sustainable development.
+    </p>
+    <div class="mt-10 flex flex-wrap gap-4">
+      <a href="{% url 'events:list' %}"
+         class="rounded-xl bg-accent-500 px-6 py-3 text-sm font-bold text-slate-900 shadow-lg shadow-accent-500/20 hover:bg-accent-400">
+        Explore events &amp; hackathons
+      </a>
+      <a href="#newsletter"
+         class="rounded-xl border border-slate-500 px-6 py-3 text-sm font-bold text-white hover:border-brand-400 hover:text-brand-300">
+        Join the newsletter
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Stats strip -->
+<section class="border-b border-slate-200 bg-white">
+  <div class="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-10 text-center sm:px-6 md:grid-cols-4">
+    <div><p class="text-3xl font-extrabold text-brand-800">2,000+</p><p class="mt-1 text-sm text-slate-500">annual lab users by 2028</p></div>
+    <div><p class="text-3xl font-extrabold text-brand-800">1,500+</p><p class="mt-1 text-sm text-slate-500">people trained</p></div>
+    <div><p class="text-3xl font-extrabold text-brand-800">50+</p><p class="mt-1 text-sm text-slate-500">EO innovations incubated</p></div>
+    <div><p class="text-3xl font-extrabold text-brand-800">2</p><p class="mt-1 text-sm text-slate-500">university hubs — TTU &amp; UoN</p></div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+  <div class="grid items-center gap-12 lg:grid-cols-2">
+    <div>
+      <p class="text-sm font-bold uppercase tracking-widest text-brand-700">About the lab</p>
+      <h2 class="mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">Satellite data, in the hands of the community</h2>
+      <p class="mt-5 leading-relaxed text-slate-600">
+        The Earth Observation Innovation Laboratories (EOIL) project establishes innovation hubs at
+        Taita Taveta University and the University of Nairobi. Commissioned by the European Union and
+        France and implemented by Expertise France with the Kenya Space Agency, the TTU lab gives
+        students, researchers, county governments and entrepreneurs open access to geospatial data,
+        processing tools and expert support.
+      </p>
+      <p class="mt-4 leading-relaxed text-slate-600">
+        From the plains of Tsavo to the Taita Hills, our region faces real challenges — drought,
+        human–wildlife conflict, mining impacts and rapid urbanisation. Earth observation puts
+        evidence behind every decision.
+      </p>
+    </div>
+    <div class="earth-grid rounded-3xl bg-gradient-to-br from-brand-900 to-slate-900 p-8 text-white shadow-xl">
+      <h3 class="text-lg font-bold text-brand-300">What you get at the lab</h3>
+      <ul class="mt-5 space-y-4 text-sm leading-relaxed">
+        <li class="flex gap-3"><span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent-400"></span> Free access to satellite imagery, geospatial datasets and processing workstations</li>
+        <li class="flex gap-3"><span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent-400"></span> Hands-on training in GIS, remote sensing and open-source EO tools</li>
+        <li class="flex gap-3"><span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent-400"></span> Prototyping sessions, hackathons and incubation for EO-based start-ups</li>
+        <li class="flex gap-3"><span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent-400"></span> Networking with the Kenya Space Agency, county stakeholders and industry</li>
+        <li class="flex gap-3"><span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-accent-400"></span> Technical support for research, county planning and civil-society projects</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Objectives -->
+<section id="objectives" class="bg-white py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <p class="text-sm font-bold uppercase tracking-widest text-brand-700">Our objectives</p>
+    <h2 class="mt-3 max-w-2xl text-3xl font-extrabold text-slate-900 sm:text-4xl">Five goals driving the TTU hub</h2>
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="rounded-2xl border border-slate-200 p-6 transition hover:border-brand-300 hover:shadow-md">
+        <span class="text-3xl font-extrabold text-brand-200">01</span>
+        <h3 class="mt-3 font-bold text-slate-900">An operational innovation hub</h3>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600">A fully equipped physical and virtual lab at TTU, open to students, researchers, counties and entrepreneurs.</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-6 transition hover:border-brand-300 hover:shadow-md">
+        <span class="text-3xl font-extrabold text-brand-200">02</span>
+        <h3 class="mt-3 font-bold text-slate-900">Uptake &amp; application of EO</h3>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600">Promoting the everyday use of satellite data in agriculture, planning, conservation and county decision-making.</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-6 transition hover:border-brand-300 hover:shadow-md">
+        <span class="text-3xl font-extrabold text-brand-200">03</span>
+        <h3 class="mt-3 font-bold text-slate-900">A catalysed innovation ecosystem</h3>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600">Hackathons, incubation and prototyping that turn ideas into EO-powered products and start-ups.</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-6 transition hover:border-brand-300 hover:shadow-md">
+        <span class="text-3xl font-extrabold text-brand-200">04</span>
+        <h3 class="mt-3 font-bold text-slate-900">Capacity building</h3>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600">Training programmes delivered through a Centre of Excellence model — from short courses to certified tracks.</p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-6 transition hover:border-brand-300 hover:shadow-md">
+        <span class="text-3xl font-extrabold text-brand-200">05</span>
+        <h3 class="mt-3 font-bold text-slate-900">Stakeholder technical support</h3>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600">Expert help for government, academia, civil society and the private sector applying EO to their mandates.</p>
+      </div>
+      <div class="earth-grid rounded-2xl bg-gradient-to-br from-brand-800 to-slate-900 p-6 text-white">
+        <h3 class="font-bold">Want to partner with the lab?</h3>
+        <p class="mt-2 text-sm leading-relaxed text-slate-200">We work with counties, NGOs, schools and companies across the coast region.</p>
+        <a href="#contact" class="mt-4 inline-block rounded-lg bg-accent-500 px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-accent-400">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Thematic areas -->
+<section id="themes" class="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+  <p class="text-sm font-bold uppercase tracking-widest text-brand-700">Focus areas</p>
+  <h2 class="mt-3 max-w-2xl text-3xl font-extrabold text-slate-900 sm:text-4xl">Where satellite data meets Taita Taveta</h2>
+  <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+      <span class="text-2xl">🌾</span>
+      <h3 class="mt-3 font-bold text-slate-900">Agriculture &amp; food security</h3>
+      <p class="mt-2 text-sm leading-relaxed text-slate-600">Crop monitoring, drought early warning and precision-farming insights for smallholders in the county.</p>
+    </div>
+    <div class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+      <span class="text-2xl">🌍</span>
+      <h3 class="mt-3 font-bold text-slate-900">Climate resilience</h3>
+      <p class="mt-2 text-sm leading-relaxed text-slate-600">Tracking rainfall, land degradation and water resources to help communities adapt to a changing climate.</p>
+    </div>
+    <div class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+      <span class="text-2xl">🏙️</span>
+      <h3 class="mt-3 font-bold text-slate-900">Urban &amp; land-use planning</h3>
+      <p class="mt-2 text-sm leading-relaxed text-slate-600">Evidence for county spatial plans — settlement growth, infrastructure and land-cover change in Voi and beyond.</p>
+    </div>
+    <div class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+      <span class="text-2xl">⛏️</span>
+      <h3 class="mt-3 font-bold text-slate-900">Mining &amp; environment</h3>
+      <p class="mt-2 text-sm leading-relaxed text-slate-600">Monitoring gemstone-mining impacts and land rehabilitation across Kenya's mining heartland.</p>
+    </div>
+    <div class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+      <span class="text-2xl">🐘</span>
+      <h3 class="mt-3 font-bold text-slate-900">Wildlife &amp; conservation</h3>
+      <p class="mt-2 text-sm leading-relaxed text-slate-600">Supporting Tsavo-ecosystem conservation with habitat mapping and human–wildlife-conflict analysis.</p>
+    </div>
+    <div class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+      <span class="text-2xl">🛰️</span>
+      <h3 class="mt-3 font-bold text-slate-900">Open EO tools &amp; data</h3>
+      <p class="mt-2 text-sm leading-relaxed text-slate-600">Building local skills in open-source geospatial software and free satellite-data catalogues.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Upcoming events -->
+<section class="bg-white py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="text-sm font-bold uppercase tracking-widest text-brand-700">What's on</p>
+        <h2 class="mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">Upcoming events</h2>
+      </div>
+      <a href="{% url 'events:list' %}" class="text-sm font-semibold text-brand-700 hover:text-brand-800">View all events →</a>
+    </div>
+    {% if upcoming_events %}
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {% for event in upcoming_events %}
+          {% include 'partials/event_card.html' %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="mt-10 rounded-2xl border border-dashed border-slate-300 p-10 text-center text-slate-500">
+        No upcoming events right now — subscribe to the newsletter below and be the first to know.
+      </p>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Partners -->
+<section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+  <p class="text-center text-sm font-bold uppercase tracking-widest text-slate-400">A partnership of</p>
+  <div class="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm font-semibold text-slate-600">
+    <span class="rounded-full bg-white px-5 py-2.5 shadow-sm ring-1 ring-slate-200">European Union</span>
+    <span class="rounded-full bg-white px-5 py-2.5 shadow-sm ring-1 ring-slate-200">France</span>
+    <span class="rounded-full bg-white px-5 py-2.5 shadow-sm ring-1 ring-slate-200">Expertise France</span>
+    <span class="rounded-full bg-white px-5 py-2.5 shadow-sm ring-1 ring-slate-200">Kenya Space Agency</span>
+    <span class="rounded-full bg-brand-700 px-5 py-2.5 text-white shadow-sm">Taita Taveta University</span>
+    <span class="rounded-full bg-white px-5 py-2.5 shadow-sm ring-1 ring-slate-200">University of Nairobi</span>
+  </div>
+</section>
+
+{% endblock %}
