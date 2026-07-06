@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ event.title }} · EOIL TTU{% endblock %}
+
+{% block content %}
+<!-- Event header -->
+<section class="earth-grid bg-gradient-to-br from-slate-950 via-brand-950 to-slate-900 py-16">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6">
+    <span class="rounded-full bg-accent-500 px-3 py-1 text-xs font-bold uppercase tracking-wider text-slate-900">
+      {{ event.get_event_type_display }}
+    </span>
+    <h1 class="mt-4 text-4xl font-extrabold text-white sm:text-5xl">{{ event.title }}</h1>
+    <p class="mt-4 max-w-2xl text-lg text-slate-300">{{ event.tagline }}</p>
+    <dl class="mt-8 grid gap-4 text-sm sm:grid-cols-2 lg:grid-cols-4">
+      <div class="rounded-xl bg-white/10 p-4 backdrop-blur">
+        <dt class="font-semibold uppercase tracking-wider text-brand-300">Starts</dt>
+        <dd class="mt-1 text-white">{{ event.start_at|date:"D, d M Y · H:i" }}</dd>
+      </div>
+      <div class="rounded-xl bg-white/10 p-4 backdrop-blur">
+        <dt class="font-semibold uppercase tracking-wider text-brand-300">Ends</dt>
+        <dd class="mt-1 text-white">{{ event.end_at|date:"D, d M Y · H:i" }}</dd>
+      </div>
+      <div class="rounded-xl bg-white/10 p-4 backdrop-blur">
+        <dt class="font-semibold uppercase tracking-wider text-brand-300">Venue</dt>
+        <dd class="mt-1 text-white">{{ event.venue }}</dd>
+      </div>
+      <div class="rounded-xl bg-white/10 p-4 backdrop-blur">
+        <dt class="font-semibold uppercase tracking-wider text-brand-300">Capacity</dt>
+        <dd class="mt-1 text-white">
+          {% if event.capacity %}{{ event.confirmed_count }} / {{ event.capacity }} registered{% else %}Open attendance{% endif %}
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="mx-auto grid max-w-5xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-5">
+  <!-- Description -->
+  <div class="lg:col-span-3">
+    {% if event.banner %}
+      <img src="{{ event.banner.url }}" alt="{{ event.title }}" class="mb-8 w-full rounded-2xl shadow">
+    {% endif %}
+    <h2 class="text-2xl font-extrabold text-slate-900">About this event</h2>
+    <div class="prose mt-4 max-w-none leading-relaxed text-slate-600">
+      {{ event.description|linebreaks }}
+    </div>
+  </div>
+
+  <!-- Registration -->
+  <div class="lg:col-span-2">
+    <div id="register" class="sticky top-24 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      {% if event.registration_open %}
+        <h3 class="text-lg font-bold text-slate-900">
+          {% if event.is_full %}Join the waitlist{% else %}Register to attend{% endif %}
+        </h3>
+        <p class="mt-1 text-sm text-slate-500">
+          {% if event.is_full %}
+            The event is at capacity — waitlisted participants are confirmed as spots open up.
+          {% else %}
+            {% if event.spots_left %}{{ event.spots_left }} spot{{ event.spots_left|pluralize }} left · {% endif %}
+            Registration closes {{ event.registration_deadline|date:"d M Y, H:i" }}.
+          {% endif %}
+        </p>
+        <form method="post" class="mt-5 space-y-4">
+          {% csrf_token %}
+          {% for field in form %}
+            <div>
+              <label for="{{ field.id_for_label }}" class="mb-1 block text-sm font-medium text-slate-700">
+                {{ field.label }}{% if field.field.required %} <span class="text-red-500">*</span>{% endif %}
+              </label>
+              {{ field }}
+              {% for error in field.errors %}
+                <p class="mt-1 text-xs text-red-600">{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endfor %}
+          <button type="submit"
+                  class="w-full rounded-xl bg-brand-700 px-4 py-3 text-sm font-bold text-white shadow hover:bg-brand-800">
+            {% if event.is_full %}Join waitlist{% else %}Register — it's free{% endif %}
+          </button>
+          <p class="text-center text-xs text-slate-400">You'll receive a digital ticket with a QR code for check-in.</p>
+        </form>
+      {% elif event.is_past %}
+        <h3 class="text-lg font-bold text-slate-900">This event has ended</h3>
+        <p class="mt-2 text-sm text-slate-500">Thanks to everyone who attended! Browse our
+          <a href="{% url 'events:list' %}" class="font-semibold text-brand-700">upcoming events</a>.</p>
+      {% else %}
+        <h3 class="text-lg font-bold text-slate-900">Registration closed</h3>
+        <p class="mt-2 text-sm text-slate-500">
+          Registration closed on {{ event.registration_deadline|date:"d M Y, H:i" }}.
+          Subscribe to the newsletter to hear about future events.
+        </p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}
