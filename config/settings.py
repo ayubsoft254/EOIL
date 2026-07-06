@@ -128,7 +128,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Email — printed to the console in development.
 # Configure a real SMTP backend for production.
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'EOIL TTU <eoil@ttu.ac.ke>'
+DEFAULT_FROM_EMAIL = 'EOIL Taita Taveta University <eoil@ttu.ac.ke>'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
