@@ -16,7 +16,8 @@ def subscribe(request):
         subscriber, created = Subscriber.objects.get_or_create(
             email=email, defaults={'name': form.cleaned_data.get('name', '')})
         if created:
-            messages.success(request, 'You are subscribed! Watch your inbox for EOIL TTU updates.')
+            messages.success(request, 'You are subscribed! Watch your inbox for updates from '
+                                      'EOIL at Taita Taveta University.')
         elif not subscriber.is_active:
             subscriber.is_active = True
             subscriber.unsubscribed_at = None
