@@ -40,10 +40,10 @@
       {% endif %}
 
       <div class="mt-8 flex justify-center gap-3 print:hidden">
-        <button onclick="window.print()"
-                class="rounded-xl bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-800">
-          Print / save ticket
-        </button>
+        <a href="{% url 'events:ticket_pdf' registration.ticket_code %}"
+           class="rounded-xl bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-800">
+          ⬇ Download PDF ticket
+        </a>
         <a href="{{ event.get_absolute_url }}"
            class="rounded-xl border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 hover:border-brand-400">
           Event details
