@@ -16,6 +16,7 @@ from django.views.decorators.http import require_POST
 
 from .forms import RegistrationForm
 from .models import Event, Registration
+from .pdf import build_ticket_pdf
 
 
 def event_list(request):
@@ -72,7 +73,8 @@ def _send_confirmation_email(request, registration):
             f'({event.start_at.strftime("%d %b %Y, %H:%M")} at {event.venue}).\n\n'
             f'{status_line}\n\n'
             f'Ticket code: {registration.ticket_code}\n'
-            f'Ticket link: {ticket_url}\n\n'
+            f'Ticket link: {ticket_url}\n'
+            f'PDF ticket: {ticket_url}pdf/\n\n'
             f'— EOIL @ Taita Taveta University'
         ),
         from_email=None,
@@ -86,6 +88,14 @@ def ticket(request, ticket_code):
     qr_svg = _qr_svg(registration.ticket_code)
     return render(request, 'events/ticket.html',
                   {'registration': registration, 'event': registration.event, 'qr_svg': qr_svg})
+
+
+def ticket_pdf(request, ticket_code):
+    registration = get_object_or_404(Registration, ticket_code=ticket_code)
+    pdf_bytes = build_ticket_pdf(registration)
+    response = HttpResponse(pdf_bytes, content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="ticket-{registration.ticket_code}.pdf"'
+    return response
 
 
 def _qr_svg(data):
