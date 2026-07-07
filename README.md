@@ -12,7 +12,8 @@ Built with **Django** and **Tailwind CSS**.
 - **Event management** — hackathons, conferences, workshops and trainings:
   - Public event listing and detail pages.
   - Participant registration with capacity limits and automatic **waitlisting** when full.
-  - Digital **tickets** with a unique code and QR code, emailed on registration.
+  - Digital **tickets** with a unique code and QR code, emailed on registration, plus a
+    downloadable boarding-pass style **PDF ticket**.
   - Staff-only **check-in desk** (`/events/checkin/`): live stats, search, one-click
     check-in/undo, and quick check-in by typing or scanning a ticket code.
   - CSV export of participants (dashboard button or Django admin action).
